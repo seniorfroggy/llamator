@@ -180,11 +180,14 @@ mechanism, etc.), factor the shared logic into a base class under `attack_provid
 (not `attacks/`) instead of duplicating it per file — each concrete attack still follows
 the same `@register_test`/`TestBase` shape, just via that intermediate base class. See
 `src/llamator/attack_provider/memory_attack_base.py` and `docs/memory_attacks.md` for a
-worked example (the nine-attack `memory_*` family), including how to document which
+worked example (the ten-attack `memory_*` family), including how to document which
 further variants of the pattern are left as future work. That family is also a good
 illustration of where to stop: adding a vector to it is a `goal` string and two class
 attributes in a ~40-line file, and if a new one seems to need base-class changes, that
-is usually a sign it belongs elsewhere.
+is usually a sign it belongs elsewhere. The corollary is that improving a whole family
+is base-class work: when live runs showed most of those vectors failing for the same
+handful of reasons, the fix was one shared prompt clause plus one shared adaptive step,
+not ten edited attack files.
 
 ## Submitting a Pull Request
 

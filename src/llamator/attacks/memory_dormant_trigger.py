@@ -43,7 +43,7 @@ class TestMemoryDormantTrigger(MemoryAttackBase):
         ],
         "description": {
             "en": "Given only a description of the target and one objective, the attacker LLM writes an "
-            "entire multi-turn scenario in a single call: plant content in ordinary conversation, then fire "
+            "entire multi-turn scenario in one planning call: plant content in ordinary conversation, then fire "
             "it from a later, seemingly unrelated message, choosing for itself where the conversation breaks "
             "into a new session. A judge model then reads the full transcript against the objective and "
             "rules on whether the planted content took hold.",
