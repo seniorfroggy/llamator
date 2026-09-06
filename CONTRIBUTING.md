@@ -172,6 +172,20 @@ Run your attack locally using your test setup to verify it works as intended.
 
 Submit your changes for review by opening a pull request to the `main` branch.
 
+### Contributing a family of related attacks (shared base class)
+
+The steps above assume one self-contained attack file. If you're contributing several
+attacks that share non-trivial logic (a common multi-stage loop, a shared verdict
+mechanism, etc.), factor the shared logic into a base class under `attack_provider/`
+(not `attacks/`) instead of duplicating it per file — each concrete attack still follows
+the same `@register_test`/`TestBase` shape, just via that intermediate base class. See
+`src/llamator/attack_provider/memory_attack_base.py` and `docs/memory_attacks.md` for a
+worked example (the nine-attack `memory_*` family), including how to document which
+further variants of the pattern are left as future work. That family is also a good
+illustration of where to stop: adding a vector to it is a `goal` string and two class
+attributes in a ~40-line file, and if a new one seems to need base-class changes, that
+is usually a sign it belongs elsewhere.
+
 ## Submitting a Pull Request
 
 1. Update your branch with the latest changes.
